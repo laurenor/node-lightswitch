@@ -2,22 +2,20 @@
   <head>
     <link rel="stylesheet" href="css/app.css">
     <script>
-      // var host = location.origin.replace(/^http/, 'ws')
-      // var ws = new WebSocket(host);
-      // ws.onmessage = function (event) {
-      //   var li = document.createElement('li');
-      //   li.innerHTML = JSON.parse(event.data);
-      //   document.querySelector('#pings').appendChild(li);
-      // };
+      var host = location.origin.replace(/^http/, 'ws')
+      var ws = new WebSocket(host);
+      ws.onmessage = function (event) {
+        var li = document.createElement('li');
+        li.innerHTML = JSON.parse(event.data);
+        document.querySelector('#pings').appendChild(li);
+      };
     </script>
   </head>
   <body>
-    <div id="lightswitch">
-      <img src="img/backplate.jpg" id="backplate">
-      <img src="img/on.jpg" id="switch1"> 
-      <img src="img/on.jpg" id="switch2">
-      <img src="img/off.jpg" id="switch3"> 
-    </div> 
+    <img src="img/backplate.jpg" id="backplate">
+    <img src="img/on.jpg" id="switch1"> 
+    <img src="img/on.jpg" id="switch2">
+    <img src="img/off.jpg" id="switch3"> 
 
 
     <h1>Pings</h1>
