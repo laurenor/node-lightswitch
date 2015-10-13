@@ -2,13 +2,13 @@
   <head>
     <link rel="stylesheet" href="css/app.css">
     <script>
-      var host = location.origin.replace(/^http/, 'ws')
-      var ws = new WebSocket(host);
-      ws.onmessage = function (event) {
-        var li = document.createElement('li');
-        li.innerHTML = JSON.parse(event.data);
-        document.querySelector('#pings').appendChild(li);
-      };
+      // var host = location.origin.replace(/^http/, 'ws')
+      // var ws = new WebSocket(host);
+      // ws.onmessage = function (event) {
+      //   var li = document.createElement('li');
+      //   li.innerHTML = JSON.parse(event.data);
+      //   document.querySelector('#pings').appendChild(li);
+      // };
     </script>
   </head>
   <body>
@@ -20,5 +20,24 @@
 
     <h1>Pings</h1>
     <ul id='pings'></ul>
+
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script>
+      var host = location.origin.replace(/^http/, 'ws')
+      var ws = new WebSocket(host);
+      ws.onopen = function (event) {
+        $('img').on('click', toggleSwitch)
+      };
+
+      function toggleSwitch() {
+        if ($(this).attr('src') == 'img/on.jpg') {
+          $(this).attr('src', 'img/off.jpg');
+        }
+        else {
+          $(this).attr('src', 'img/on.jpg');
+        }
+      };
+
+    </script>
   </body>
 </html>
