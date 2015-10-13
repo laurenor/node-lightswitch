@@ -1,0 +1,14 @@
+{
+  "name": "node-exercise",
+  "version": "1.0.0",
+  "dependencies": {
+    "express": "^4.4.5",
+    "ws": "0.4.x"
+  },
+  "engines": {
+    "node": "0.10.x"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}
