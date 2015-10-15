@@ -15,25 +15,32 @@ var wss = new WebSocketServer({server: server})
 console.log("websocket server created")
 
 var users = 0;
+// 0 is on; 1 is off
+var switch1 = 0;
+var switch2 = 0;
+var switch3 = 1;
 
 wss.on("connection", function(ws) {
-  users++ 
-  console.log(users)
+  users++;
+  var obj = {users: users, switch1: switch1, switch2: switch2, switch3: switch3};
+  wss.broadcast(JSON.stringify(obj));
 
-  // ws.send(JSON.stringify(users))
-  wss.broadcast(JSON.stringify(users));
-
-  console.log("websocket connection open")
+  console.log("websocket connection open");
 
   ws.on("close", function() {
-    console.log("websocket connection close")
-    users--
-    // ws.send(JSON.stringify(users))
-    wss.broadcast(JSON.stringify(users));
+    console.log("websocket connection close");
+    users--;
+    obj.users = users;
+    wss.broadcast(JSON.stringify(obj));
 
   })
 
+  ws.on("message", function (message) {
+	wss.broadcast(message);
+  })
+
 })
+
 
 wss.broadcast = function broadcast(data) {
 	wss.clients.forEach(function each(client) {
