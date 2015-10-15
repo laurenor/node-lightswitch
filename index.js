@@ -14,17 +14,29 @@ console.log("http server listening on %d", port)
 var wss = new WebSocketServer({server: server})
 console.log("websocket server created")
 
-var count = 0;
+var users = 0;
 
 wss.on("connection", function(ws) {
-  count++ 
-  console.log(count)
-  ws.send(JSON.stringify(count))
+  users++ 
+  console.log(users)
+
+  // ws.send(JSON.stringify(users))
+  wss.broadcast(JSON.stringify(users));
 
   console.log("websocket connection open")
 
   ws.on("close", function() {
     console.log("websocket connection close")
-    count--
+    users--
+    // ws.send(JSON.stringify(users))
+    wss.broadcast(JSON.stringify(users));
+
   })
+
 })
+
+wss.broadcast = function broadcast(data) {
+	wss.clients.forEach(function each(client) {
+		client.send(data);
+	});
+};
