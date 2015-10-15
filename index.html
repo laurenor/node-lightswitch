@@ -7,6 +7,7 @@
     <img src="img/on.jpg" id="switch1"> 
     <img src="img/on.jpg" id="switch2">
     <img src="img/off.jpg" id="switch3">
+    <div>Users online: <span id="userCount"></span></div>
 
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script>
@@ -15,6 +16,11 @@
       ws.onopen = function (event) {
         $('img').on('click', toggleSwitch)
       };
+
+      ws.onmessage = function (event) {
+        $('#userCount').html(JSON.parse(event.data))
+        console.log(event)
+      }
 
       function toggleSwitch() {
         if ($(this).attr('src') == 'img/on.jpg') {
