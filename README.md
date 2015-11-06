@@ -6,15 +6,9 @@ View it live, <a href="https://node-lightswitch.herokuapp.com/" target="_blank">
 
 ##Install on your machine
 
-### Install the modules
-In the node-exercise directory, run the following commands:
-```
-npm install --save express
-npm install --save ws
-```
-
 ### Start the server
 ```
+npm install
 npm start
 ```
 
