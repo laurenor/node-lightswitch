@@ -5,8 +5,8 @@ ws.onopen = function (event) {
   $('img').on('click', sendState);
 };
 
-var on = "public/img/on.jpg";
-var off = "public/img/off.jpg";
+var on = "img/on.jpg";
+var off = "img/off.jpg";
 var obj;
 
 //gets state of switches from server
